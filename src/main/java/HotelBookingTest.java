@@ -1,4 +1,5 @@
 import com.sun.javafx.PlatformUtil;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,30 +25,23 @@ public class HotelBookingTest {
 
     @Test
     public void shouldBeAbleToSearchForHotels() {
-        setDriverPath();
+        CommonHelper.setDriverPath();
 
         driver.get("https://www.cleartrip.com/");
         hotelLink.click();
+            try {
+                     localityTextBox.sendKeys("Indiranagar, Bangalore");
+                     new Select(travellerSelection).selectByVisibleText("1 room, 2 adults");
+                     searchButton.click();
+                }
 
-        localityTextBox.sendKeys("Indiranagar, Bangalore");
+            catch (NoSuchElementException e){
 
-        new Select(travellerSelection).selectByVisibleText("1 room, 2 adults");
-        searchButton.click();
+                    e.printStackTrace();
+                }
 
         driver.quit();
 
-    }
-
-    private void setDriverPath() {
-        if (PlatformUtil.isMac()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver");
-        }
-        if (PlatformUtil.isWindows()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        }
-        if (PlatformUtil.isLinux()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver_linux");
-        }
     }
 
 }

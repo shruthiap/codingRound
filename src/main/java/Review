@@ -1,0 +1,7 @@
+Below are the key factors while automating scripts
+1)Implementation of methods with same functionality must be done only once in a Helper class
+2)HardWaits must be avoided.
+3)The WebElements must all be declared at the top so that it can be reused
+4)For Assert statements its a good practice to put the justification Statement.
+5)try catch must be used where the element identification might fail or where there is a possibility of failure
+6)Helper class must be there in order to have all the similar functionality methods
